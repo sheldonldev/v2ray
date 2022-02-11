@@ -56,11 +56,18 @@ fi
 # Prepare
 echo "Prepare to use"
 unzip v2ray.zip && chmod +x v2ray v2ctl
-mv v2ray v2ctl /usr/bin/
+mv systemd/system/v2ray.service /etc/systemd/system/v2ray.service
+mv v2ray v2ctl /usr/local/bin/
+mkdir /usr/local/etc/v2ray
+mv config.json /usr/local/etc/v2ray/config.json
 mkdir /usr/local/share/v2ray
 mv geosite.dat geoip.dat /usr/local/share/v2ray/
-mkdir /etc/v2ray
-mv config.json /etc/v2ray/config.json
+
 
 # Clean
+rm *.dat
+rm *.json
+rm *.zip
+rm -rf systemd
+
 echo "Done"

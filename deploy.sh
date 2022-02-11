@@ -8,8 +8,8 @@ fi
 export ENDTYPE=$1
 
 export IP=${SERVER_ADDRESS}
-export PORT=$(( ( RANDOM % 60000 )  + 30000 ))
-export UUID=$(uuidgen)
+export PORT=${PORT}
+export UUID=${UUID}
 
 echo "Asia/Shanghai" > /etc/timezone
 
@@ -27,12 +27,16 @@ echo $IP
 echo $PORT
 echo $UUID
 
-/usr/bin/v2ray -config /etc/v2ray/config.json
+sudo systemctl daemon-reload
+sudo systemctl start v2ray.service
+
 echo "finished"
 
 sleep 1
-echo "please reboot"
+echo "may need reboot"
 sleep 3
+
+sudo systemctl status v2ray.service
 
 
 
