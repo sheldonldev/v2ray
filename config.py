@@ -6,51 +6,52 @@ UUID = config("UUID")
 PORT = config("PORT")
 
 
-server_config = {
-  "inbounds": [
-    {
-      "sniffing": {
-        "enabled": True,
-        "destOverride": ["http", "tls"]
-      },
-      "tag": "tcp",
-      "port": int(PORT),
-      "protocol": "vmess",
-      "settings": {
-        "clients": [
-          {
-            "id": f"{UUID}",
-            "level": 0,
-            "alterId": 64
-          }
-        ]
-      }
-    }
-  ],
-  "outbounds": [
-    {
-      "protocol": "freedom",
-      "settings": {},
-      "tag": "direct"
-    },
-    {
-      "protocol": "blackhole",
-      "settings": {},
-      "tag": "block"
-    }
-  ],
-  "routing": {
-    "domainStrategy": "AsIs",
-    "rules": [
-      {
-        "type": "field",
-        "outboundTag": "block",
-        "protocol": ["bittorrent"]
-      }
-    ],
-    "strategy": "rules"
-  }
-}
+# server_config = {
+#   "inbounds": [
+#     {
+#       "sniffing": {
+#         "enabled": True,
+#         "destOverride": ["http", "tls"]
+#       },
+#       "tag": "tcp",
+#       "port": int(PORT),
+#       "protocol": "vmess",
+#       "settings": {
+#         "clients": [
+#           {
+#             "id": f"{UUID}",
+#             "level": 0,
+#             "alterId": 64
+#           }
+#         ]
+#       }
+#     }
+#   ],
+#   "outbounds": [
+#     {
+#       "protocol": "freedom",
+#       "settings": {},
+#       "tag": "direct"
+#     },
+#     {
+#       "protocol": "blackhole",
+#       "settings": {},
+#       "tag": "block"
+#     }
+#   ],
+#   "routing": {
+#     "domainStrategy": "AsIs",
+#     "rules": [
+#       {
+#         "type": "field",
+#         "outboundTag": "block",
+#         "protocol": ["bittorrent"]
+#       }
+#     ],
+#     "strategy": "rules"
+#   }
+# }
+server_config = {}
 client_config = {
   "log": {
     "error": "",
@@ -65,7 +66,7 @@ client_config = {
         "udp": False,
         "auth": "noauth"
       },
-      "port": "10808"
+      "port": 10808
     },
     {
       "listen": "127.0.0.1",
@@ -73,7 +74,7 @@ client_config = {
       "settings": {
         "timeout": 360
       },
-      "port": "10809"
+      "port": 10809
     }
   ],
   "outbounds": [
