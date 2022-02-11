@@ -12,11 +12,21 @@ UUID="abcdefgh-ijkm-00oo-bbrl-kkkkol0ll999"
 - run
 ```bash
 chmod +x ./deploy.sh
-sudo bash ./deploy.sh server # or client
+
+# server root
+./deploy.sh server
+
+# client user
+sudo bash ./deploy.sh client
 ```
 
 - update config
 ```bash
 # update `.env`, then:
-python config.py server # or client
+
+# server
+python config.py ENDTYPE=server
+
+# client
+python config.py ENDTYPE=client
 ```

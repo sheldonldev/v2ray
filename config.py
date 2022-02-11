@@ -59,9 +59,9 @@ client_config = {
 }
 
 with open('/usr/local/etc/v2ray/config.json', 'w') as f:
-    if os.environ.get('ENDTYPE'):
+    if os.environ.get('ENDTYPE') == 'server':
         json.dump(server_config, f, indent=4)
-    elif os.environ.get('ENDTYPE'):
+    elif os.environ.get('ENDTYPE') == 'client':
         json.dump(client_config, f, indent=4)
     else:
         print("'server' or 'client'?")
