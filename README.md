@@ -1,11 +1,11 @@
 # README
 
-- only apply for ubuntu
 
+## Ubuntu - Install / Update Config
 
-# Install / Update Config
+- clone this repo.
 
-- `.env`
+- `.env` example:
 ```bash
 ADDRESS="139.0.0.0"
 PORT="00000"
@@ -22,3 +22,11 @@ chmod +x ./deploy.sh
 sudo bash ./deploy.sh client
 ```
 
+
+## Android
+
+- Find app on google appstore on the chrome. 
+- Copy url to a chrome extention: apk downloader, select your version.
+- Download and generate a short link with Wetransfer.
+- Typing the short link on Android, download.
+- Setup your config and done.
