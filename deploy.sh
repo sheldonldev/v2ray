@@ -19,23 +19,31 @@ add-apt-repository ppa:deadsnakes/ppa -y
 apt install python3 -y
 apt install unzip -y
 
-./v2ray.sh "${TARGETPLATFORM}" "${TAG}"
+echo "Prepare to use"
+unzip v2ray.zip && chmod +x v2ray v2ctl
+mv systemd/system/v2ray.service /etc/systemd/system/v2ray.service
+mv v2ray v2ctl /usr/local/bin/
+mkdir /usr/local/etc/v2ray
+mv config.json /usr/local/etc/v2ray/config.json
+mkdir /usr/local/share/v2ray
+mv geosite.dat geoip.dat /usr/local/share/v2ray/
 echo "v2ray installed"
 
+# Clean
+rm *.dat
+rm *.json
+rm -rf systemd
+
+# create config
 python3 config.py
 echo $IP
 echo $PORT
 echo $UUID
 
+# start
 sudo systemctl daemon-reload
 sudo systemctl start v2ray.service
-
-echo "finished"
-
-sleep 1
-echo "may need reboot"
-sleep 3
-
+echo "finished. may need reboot"
 sudo systemctl status v2ray.service
 
 
