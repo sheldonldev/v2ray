@@ -51,7 +51,6 @@ server_config = {
     "strategy": "rules"
   }
 }
-
 client_config = {
   "log": {
     "error": "",
@@ -63,10 +62,10 @@ client_config = {
       "listen": "127.0.0.1",
       "protocol": "socks",
       "settings": {
-        "udp": False,
+        "udp": false,
         "auth": "noauth"
       },
-      "port": 10808
+      "port": "10808"
     },
     {
       "listen": "127.0.0.1",
@@ -74,13 +73,13 @@ client_config = {
       "settings": {
         "timeout": 360
       },
-      "port": 10809
+      "port": "10809"
     }
   ],
   "outbounds": [
     {
       "mux": {
-        "enabled": False,
+        "enabled": false,
         "concurrency": 8
       },
       "protocol": "vmess",
@@ -103,6 +102,7 @@ client_config = {
                 "id": f"{UUID}",
                 "alterId": 64,
                 "level": 0,
+                "security": "none"
               }
             ],
             "port": int(PORT)
