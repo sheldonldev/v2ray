@@ -7,10 +7,6 @@ fi
 
 export ENDTYPE=$1
 
-export IP=${SERVER_ADDRESS}
-export PORT=${PORT}
-export UUID=${UUID}
-
 echo "Asia/Shanghai" > /etc/timezone
 
 apt update
@@ -35,15 +31,13 @@ rm *.json
 rm -rf systemd
 
 # create config
+pip install -r requirements.txt
 python3 config.py
-echo $IP
-echo $PORT
-echo $UUID
 
 # start
 sudo systemctl daemon-reload
 sudo systemctl start v2ray.service
-echo "finished. may need reboot"
+echo "Finished! May need reboot."
 sudo systemctl status v2ray.service
 
 

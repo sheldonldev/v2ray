@@ -1,8 +1,9 @@
 import os, json
+from decouple import config
 
-IP = os.environ.get("IP")
-UUID = os.environ.get("UUID")
-PORT = os.environ.get("PORT")
+ADDRESS = config("ADDRESS")
+UUID = config("UUID")
+PORT = config("PORT")
 
 
 server_config = {
@@ -37,7 +38,7 @@ client_config = {
         "protocol": "vmess",
         "settings": {
         "vnext": [{
-            "address": f"{IP}",
+            "address": f"{ADDRESS}",
             "port": int(PORT),
             "users": [{ "id": f"{UUID.lower()}" }]
         }]
