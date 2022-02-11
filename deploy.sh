@@ -7,8 +7,6 @@ fi
 
 export ENDTYPE=$1
 
-echo "Asia/Shanghai" > /etc/timezone
-
 apt update
 apt install software-properties-common -y
 add-apt-repository ppa:deadsnakes/ppa -y
@@ -24,7 +22,6 @@ mkdir /usr/local/etc/v2ray
 mv config.json /usr/local/etc/v2ray/config.json
 mkdir /usr/local/share/v2ray
 mv geosite.dat geoip.dat /usr/local/share/v2ray/
-echo "v2ray installed"
 
 # Clean
 rm *.dat
@@ -34,6 +31,7 @@ rm -rf systemd
 # create config
 pip3 install -r requirements.txt
 python3 config.py
+echo "v2ray installed"
 
 # start
 sudo systemctl daemon-reload
