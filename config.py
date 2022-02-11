@@ -20,19 +20,19 @@ server_config = {
   "policy": {
     "levels": {
       "0": {
-        "statsUserUplink": true,
-        "statsUserDownlink": true
+        "statsUserUplink": True,
+        "statsUserDownlink": True 
       }
     },
     "system": {
-      "statsInboundUplink":true,
-      "statsInboundDownlink": true
+      "statsInboundUplink":True,
+      "statsInboundDownlink":True 
     }
   },
   "inbounds": [
     {
       "sniffing": {
-        "enabled": true,
+        "enabled": True,
         "destOverride": ["http", "tls"]
       },
       "tag": "tcp",
@@ -104,7 +104,7 @@ client_config = {
       "listen": "127.0.0.1",
       "protocol": "socks",
       "settings": {
-        "udp": false,
+        "udp": False,
         "auth": "noauth"
       },
       "port": "10808"
@@ -121,7 +121,7 @@ client_config = {
   "outbounds": [
     {
       "mux": {
-        "enabled": false,
+        "enabled": False,
         "concurrency": 8
       },
       "protocol": "vmess",
