@@ -6,52 +6,52 @@ UUID = config("UUID")
 PORT = config("PORT")
 
 
-# server_config = {
-#   "inbounds": [
-#     {
-#       "sniffing": {
-#         "enabled": True,
-#         "destOverride": ["http", "tls"]
-#       },
-#       "tag": "tcp",
-#       "port": int(PORT),
-#       "protocol": "vmess",
-#       "settings": {
-#         "clients": [
-#           {
-#             "id": f"{UUID}",
-#             "level": 0,
-#             "alterId": 64
-#           }
-#         ]
-#       }
-#     }
-#   ],
-#   "outbounds": [
-#     {
-#       "protocol": "freedom",
-#       "settings": {},
-#       "tag": "direct"
-#     },
-#     {
-#       "protocol": "blackhole",
-#       "settings": {},
-#       "tag": "block"
-#     }
-#   ],
-#   "routing": {
-#     "domainStrategy": "AsIs",
-#     "rules": [
-#       {
-#         "type": "field",
-#         "outboundTag": "block",
-#         "protocol": ["bittorrent"]
-#       }
-#     ],
-#     "strategy": "rules"
-#   }
-# }
-server_config = {}
+server_config = {
+  "inbounds": [
+    {
+      "sniffing": {
+        "enabled": True,
+        "destOverride": ["http", "tls"]
+      },
+      "tag": "tcp",
+      "port": int(PORT),
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": UUID,
+            "level": 0,
+            "alterId": 64
+          }
+        ]
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "settings": {},
+      "tag": "direct"
+    },
+    {
+      "protocol": "blackhole",
+      "settings": {},
+      "tag": "block"
+    }
+  ],
+  "routing": {
+    "domainStrategy": "AsIs",
+    "rules": [
+      {
+        "type": "field",
+        "outboundTag": "block",
+        "protocol": ["bittorrent"]
+      }
+    ],
+    "strategy": "rules"
+  }
+}
+
 client_config = {
   "log": {
     "error": "",
@@ -97,10 +97,10 @@ client_config = {
       "settings": {
         "vnext": [
           {
-            "address": f"{ADDRESS}",
+            "address": ADDRESS,
             "users": [
               {
-                "id": f"{UUID}",
+                "id": UUID,
                 "alterId": 64,
                 "level": 0,
                 "security": "none"
