@@ -7,28 +7,6 @@ PORT = config("PORT")
 
 
 server_config = {
-  "log": {
-    "loglevel": "warning",
-    "access": "/var/log/v2ray/access.log",
-    "error": "/var/log/v2ray/error.log"
-  },
-  "stats": {},
-  "api": {
-    "tag": "api",
-    "services": ["StatsService"]
-  },
-  "policy": {
-    "levels": {
-      "0": {
-        "statsUserUplink": True,
-        "statsUserDownlink": True 
-      }
-    },
-    "system": {
-      "statsInboundUplink":True,
-      "statsInboundDownlink":True 
-    }
-  },
   "inbounds": [
     {
       "sniffing": {
@@ -41,22 +19,12 @@ server_config = {
       "settings": {
         "clients": [
           {
-            "email": "99999999@muppets.monster",
             "id": f"{UUID}",
             "level": 0,
             "alterId": 64
           }
         ]
       }
-    },
-    {
-      "listen": "127.0.0.1",
-      "port": 10085,
-      "protocol": "dokodemo-door",
-      "settings": {
-        "address": "127.0.0.1"
-      },
-      "tag": "api"
     }
   ],
   "outbounds": [
@@ -80,15 +48,6 @@ server_config = {
         "protocol": ["bittorrent"]
       }
     ],
-    "settings": {
-      "rules": [
-        {
-          "inboundTag": ["api"],
-          "outboundTag": "api",
-          "type": "field"
-        }
-      ]
-    },
     "strategy": "rules"
   }
 }
@@ -107,7 +66,7 @@ client_config = {
         "udp": False,
         "auth": "noauth"
       },
-      "port": "10808"
+      "port": 10808
     },
     {
       "listen": "127.0.0.1",
@@ -115,7 +74,7 @@ client_config = {
       "settings": {
         "timeout": 360
       },
-      "port": "10809"
+      "port": 10809
     }
   ],
   "outbounds": [
@@ -142,9 +101,8 @@ client_config = {
             "users": [
               {
                 "id": f"{UUID}",
-                "alterId": 0,
+                "alterId": 64,
                 "level": 0,
-                "security": "aes-128-gcm"
               }
             ],
             "port": int(PORT)
