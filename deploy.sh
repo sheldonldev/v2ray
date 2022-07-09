@@ -7,7 +7,7 @@ fi
 
 TARGETPLATFORM="linux/amd64"
 TAG="v4.44.0"
-PORT="32100"
+PORT="443"
 UUID="87e209b7-f0b0-4155-ba97-030e8f71eb53"
 
 export ENDTYPE=$1
