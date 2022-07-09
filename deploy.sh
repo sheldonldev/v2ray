@@ -5,12 +5,10 @@ then
   export $(grep -v '^#' .env | xargs)
 fi
 
-TARGETPLATFORM="linux/amd64"
-TAG="v4.44.0"
-PORT="443"
-UUID="87e209b7-f0b0-4155-ba97-030e8f71eb53"
-
-export ENDTYPE=$1
+export TARGETPLATFORM="linux/amd64"
+export TAG="v4.44.0"
+export PORT="443"
+export UUID="87e209b7-f0b0-4155-ba97-030e8f71eb53"
 
 apt update
 apt install software-properties-common -y
@@ -43,6 +41,3 @@ sudo systemctl daemon-reload
 sudo systemctl start v2ray.service
 echo "Finished! May need reboot."
 sudo systemctl status v2ray.service
-
-
-

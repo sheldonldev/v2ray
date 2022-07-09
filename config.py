@@ -1,10 +1,8 @@
 import os, json
 from decouple import config
 
-ADDRESS = config("ADDRESS")
 UUID = config("UUID")
 PORT = config("PORT")
-
 
 server_config = {
   "inbounds": [
@@ -52,100 +50,5 @@ server_config = {
   }
 }
 
-client_config = {
-  "log": {
-    "error": "",
-    "loglevel": "info",
-    "access": ""
-  },
-  "inbounds": [
-    {
-      "listen": "127.0.0.1",
-      "protocol": "socks",
-      "settings": {
-        "udp": False,
-        "auth": "noauth"
-      },
-      "port": 10808
-    },
-    {
-      "listen": "127.0.0.1",
-      "protocol": "http",
-      "settings": {
-        "timeout": 360
-      },
-      "port": 10809
-    }
-  ],
-  "outbounds": [
-    {
-      "mux": {
-        "enabled": False,
-        "concurrency": 8
-      },
-      "protocol": "vmess",
-      "streamSettings": {
-        "network": "tcp",
-        "tcpSettings": {
-          "header": {
-            "type": "none"
-          }
-        },
-        "security": "none"
-      },
-      "tag": "proxy",
-      "settings": {
-        "vnext": [
-          {
-            "address": ADDRESS,
-            "users": [
-              {
-                "id": UUID,
-                "alterId": 64,
-                "level": 0,
-                "security": "none"
-              }
-            ],
-            "port": int(PORT)
-          }
-        ]
-      }
-    },
-    {
-      "tag": "direct",
-      "protocol": "freedom",
-      "settings": {
-        "domainStrategy": "UseIP",
-        "userLevel": 0
-      }
-    },
-    {
-      "tag": "block",
-      "protocol": "blackhole",
-      "settings": {
-        "response": {
-          "type": "none"
-        }
-      }
-    }
-  ],
-  "dns": {},
-  "routing": {
-    "settings": {
-      "domainStrategy": "AsIs",
-      "rules": []
-    }
-  },
-  "transport": {}
-}
-
 with open('/usr/local/etc/v2ray/config.json', 'w') as f:
-    if os.environ.get('ENDTYPE') == 'server':
-        json.dump(server_config, f, indent=4)
-    elif os.environ.get('ENDTYPE') == 'client':
-        json.dump(client_config, f, indent=4)
-    else:
-        print("'server' or 'client'?")
-
-
-
+    json.dump(server_config, f, indent=4)
